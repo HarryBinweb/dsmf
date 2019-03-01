@@ -58,10 +58,7 @@ $(document).ready(function(){
 			});
 			circleChange();
 		}
-		// 自动轮播
-		setInterval(function(){
-			nextImg();
-		},3000);
+		
 		// 上一张
 		$('.prev').click(function(){
 			index--;
@@ -72,6 +69,18 @@ $(document).ready(function(){
 			$('.slider').stop().animate({left: -offsetWidth*index}, 500);
 			circleChange();
 		});
+
+		// 自动轮播
+
+		timer = setInterval(nextImg,3000);
+		//鼠标移入移出
+		$('#fixWrap').mouseenter(function(){
+			clearInterval(timer);
+		})
+		$('#fixWrap').mouseleave(function(){
+			timer = setInterval(nextImg,3000);
+		})
+
 		//滚动淡入元素
 		$('.frCon').children().css({
 			opacity: '0'
